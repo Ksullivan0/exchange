@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://7eiw4w8q2itr"]
+
+[ext_resource type="Texture2D" uid="uid://b7n00ous0paic" path="res://map1.png" id="2_8wfi4"]
+[ext_resource type="PackedScene" uid="uid://c6k10odu5ag7d" path="res://crate1.tscn" id="3_bgx5l"]
+[ext_resource type="PackedScene" uid="uid://4bodh5bdi451" path="res://player.tscn" id="4_bl0wn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_seoy3"]
+size = Vector2(1153.5, 130)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tte3s"]
+size = Vector2(69.5, 564)
+
+[node name="World" type="Node2D"]
+
+[node name="Map1" type="Sprite2D" parent="."]
+position = Vector2(575, 323)
+scale = Vector2(2.88, 4.32)
+texture = ExtResource("2_8wfi4")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="GroundWalls" type="StaticBody2D" parent="ParallaxBackground"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/GroundWalls"]
+position = Vector2(576.25, 582)
+shape = SubResource("RectangleShape2D_seoy3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ParallaxBackground/GroundWalls"]
+position = Vector2(34.25, 365)
+shape = SubResource("RectangleShape2D_tte3s")
+
+[node name="Player" parent="." instance=ExtResource("4_bl0wn")]
+position = Vector2(121, 481)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-1, 0)
+limit_left = -50
+
+[node name="crate1" parent="." instance=ExtResource("3_bgx5l")]
+position = Vector2(409, 487)
